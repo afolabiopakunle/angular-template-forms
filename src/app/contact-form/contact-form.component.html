@@ -1,11 +1,14 @@
 <form>
   <div class="my-3">
     <label for="firstName">First Name</label>
-    <input type="text" class="form-control" id="firstName" />
+    <input #firstName="ngModel" required type="text" class="form-control" [class.is-invalid]="firstName.invalid && firstName.touched" ngModel name="firstName" id="firstName" />
+    <div class="invalid-feedback">
+    Please provide a valid city.
+  </div>
   </div>
   <div class="my-3">
     <label for="comments">Comments</label>
-    <textarea class="form-control" name="" id="" cols="30" rows="10"></textarea>
+    <textarea name="comment" ngModel class="form-control" name="" id="" cols="30" rows="10"></textarea>
   </div>
   <button class="btn btn-primary">Submit</button>
 

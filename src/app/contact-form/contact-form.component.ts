@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { first } from 'rxjs/operators';
 
 @Component({
   selector: 'app-contact-form',
@@ -12,4 +13,7 @@ export class ContactFormComponent implements OnInit {
   ngOnInit() {
   }
 
+  log(firstname) {
+    console.log(firstname)
+  }
 }
