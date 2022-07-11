@@ -1,15 +1,42 @@
-<form>
+<form #myForm="ngForm" (ngSubmit)="submit(myForm)">
   <div class="my-3">
     <label for="firstName">First Name</label>
-    <input #firstName="ngModel" required type="text" class="form-control" [class.is-invalid]="firstName.invalid && firstName.touched" ngModel name="firstName" id="firstName" />
-    <div class="invalid-feedback">
-    Please provide a valid city.
-  </div>
+    <input
+      #firstName="ngModel"
+      required
+      minlength="5"
+      type="text"
+      maxlength="6"
+      class="form-control"
+      [class.is-invalid]="firstName.invalid && firstName.touched"
+      ngModel
+      name="firstName"
+      id="firstName"
+      (blur)="log(firstName)"
+      autocomplete="off"
+    />
+    <ng-container *ngIf="firstName.invalid && firstName.touched">
+      <div *ngIf="firstName.errors.required" class="invalid-feedback">
+        First name is required
+      </div>
+      <div *ngIf="firstName.errors.minlength" class="invalid-feedback">
+        Minimum characters is {{firstName.errors.minlength.requiredLength}}
+      </div>
+      <div *ngIf="firstName.errors.maxlength" class="invalid-feedback">
+      Maximum characters is 6
+    </div>
+    </ng-container>
   </div>
   <div class="my-3">
     <label for="comments">Comments</label>
-    <textarea name="comment" ngModel class="form-control" name="" id="" cols="30" rows="10"></textarea>
+    <textarea
+      name="comment"
+      ngModel
+      class="form-control"
+      id=""
+      cols="30"
+      rows="10"
+    ></textarea>
   </div>
   <button class="btn btn-primary">Submit</button>
-
 </form>
